@@ -43,6 +43,8 @@ java {
     targetCompatibility = JavaVersion.toVersion('11')
 }
 
-
+nativeImage {
+    imageName = 'encrypt-service'
+}
 
 
