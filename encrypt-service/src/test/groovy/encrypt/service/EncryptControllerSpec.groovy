@@ -1,27 +1,19 @@
 package encrypt.service
 
-import io.micronaut.context.ApplicationContext
-import io.micronaut.runtime.server.EmbeddedServer
-import spock.lang.AutoCleanup
-import spock.lang.Shared
+import io.micronaut.test.extensions.spock.annotation.MicronautTest
 import spock.lang.Specification
 
+import javax.inject.Inject
+
+@MicronautTest
 class EncryptControllerSpec extends Specification {
 
-    @Shared
-    @AutoCleanup
-    EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer)
-
-    @Shared
-    EncryptClient encryptClient = embeddedServer.applicationContext.getBean(EncryptClient)
+    @Inject
+    EncryptClient encryptClient
 
     void 'test encrypt client'() {
         expect:
         encryptClient.encrypt('Hola JConf Peru').text == 'ureP fnoCJ aloH'
     }
 
-    void 'test encrypt client 2'() {
-        expect:
-        encryptClient.encrypt('Hola JConf Peru').text == 'ureP fnoCJ aloH'
-    }
 }
