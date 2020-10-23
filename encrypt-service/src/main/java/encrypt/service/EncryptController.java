@@ -10,9 +10,14 @@ import io.reactivex.Single;
 @ExecuteOn(TaskExecutors.IO)
 public class EncryptController {
 
+    private final EncryptService encryptService;
+
+    public EncryptController(EncryptService encryptService) {
+        this.encryptService = encryptService;
+    }
+
     @Get("/encrypt/{text}")
     public Single<MyMessage> encrypt(String text) {
-        var encrypted = new StringBuilder(text).reverse().toString();
-        return Single.just(new MyMessage(encrypted));
+        return encryptService.encrypt(text);
     }
 }
