@@ -13,7 +13,7 @@ class EncryptControllerSpec extends Specification {
 
     void 'test encrypt client'() {
         expect:
-        encryptClient.encrypt('Hola JConf Peru').text == 'ureP fnoCJ aloH'
+        encryptClient.encrypt('Hola JConf Peru').blockingGet().text == 'ureP fnoCJ aloH'
     }
 
 }
